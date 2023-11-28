@@ -56,7 +56,7 @@ client.on('messageCreate', async (message) => {
     conversation.push({
       role: 'user',
       name: username,
-      content: message.content,
+      content: msg.content,
     });
   })
 
