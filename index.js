@@ -69,7 +69,7 @@ const response = await openai.chat.completions.create({
  clearInterval(sendTypingInterval);
 
   if (!response) {
-    message.reply("Hello there, I'm having some truble with OpenAI API. Try again in a moment .error('OpenAi Error:\n', error)");
+    message.reply("Hello there, I'm having some truble with OpenAI API. Try again in a moment.");
     return;
   }
 
