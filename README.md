@@ -1,9 +1,9 @@
 # ChatGPT For Discord Bot
-This project use java code, and real coder and helper is **under ctrl**
+This project uses java code, and the real coder and helper is **under ctrl.**
 
 
 # how can i use this?
-You can fork this or use this code to your workshop, you have to rename `.env.example` file name to `.env` file,
+You can fork this or use this code for your workshop. You will have to rename `.env.example` file name to `.env` file,
 
 
 # changes in .env file
@@ -12,8 +12,8 @@ You can fork this or use this code to your workshop, you have to rename `.env.ex
 
 
 # Can i use this in Replit?
-Yes, You can use this to your replit project.
-if you want webview in replit, simply paste ```const express = require('express');
+Yes, you can use this for your replit project.
+If you want to webview in replit, simply paste this code. ```const express = require('express');
 const app = express();
 const port = 3000; //whatever port you want.
 app.get('/', (req, res) => res.send('Hello World!'));
