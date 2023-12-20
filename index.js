@@ -19,7 +19,7 @@ const CHANNELS = ['1172991646137319445'];//your Channel id
 
 client.on('messageCreate', async (message) => {
   if (message.author.bot) return;
-  if (message.content.startsWith(IGNORE_PREFIX)) return;
+  if (message.content.startsWith('IGNORE_PREFIX')) return;
   if (!CHANNELS.includes(message.channelId) && !message.mentions.users.has(client.user.id)) return;
 
   await message.channel.sendTyping();
