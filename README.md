@@ -12,6 +12,7 @@ You can fork this or use this code for your workshop. You will have to rename `.
 
 
 # Can i use this in Replit?
+outdated. 
 Yes, you can use this for your replit project.
 If you want to webview in replit, simply paste this code. ```const express = require('express');
 const app = express();
