@@ -20,6 +20,7 @@ const port = 3000; //whatever port you want.
 app.get('/', (req, res) => res.send('Hello World!'));
 app.listen(port, () => console.log('\x1b[36m%s\x1b[0m', `|    🔗 Listening to RTX : ${port}`));``` in your `index.js` file.
 
+**__OUTDATED__**
 
 # Support
 
