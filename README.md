@@ -1,35 +1,36 @@
-# ChatGPT For Discord Bot
-This project uses java code, and the real coder and helper is **under ctrl.**
+# ChatGPT for Discord Bot  
+This project is developed using Java, with primary contributions from **under ctrl.**  
 
+## How can I utilize this?  
+You can either fork this repository or implement the code in your workshop.  
 
-## how can i use this?
-You can fork this or use this code for your workshop. You will have to rename `.env.example` file name to `.env` file,
+## Modifications needed in the .env.example file
+Rename `.env.example` to `.env` file and insert the following credentials.
+```javascript
+TOKEN="YOUR DISCORD BOT TOKEN"
+OPENAI_API_KEY="Your OpenAI API key"
+```
 
+## Is this compatible with Replit?  
+This information is outdated.  
+Yes, you can integrate this into your Replit project. To enable webview in Replit, simply insert the following code into your `index.js` file:  
+```javascript
+const express = require('express');  
+const app = express();  
+const port = 3000; // or any port of your choice.  
+app.get('/', (req, res) => res.send('Hello World!'));  
+app.listen(port, () => console.log('\x1b[36m%s\x1b[0m', `|    🔗 Listening to RTX : ${port}`));  
+```  
 
-## changes in .env file
-1. you have to put your **Discord bot `TOKEN`** in file,
-2. You have to put your `OPENAI_API_KEY` in `.env` file.
+#### OUTDATED  
 
+# Support  
 
-## Can i use this in Replit?
-outdated. 
-Yes, you can use this for your replit project.
-If you want to webview in replit, simply paste this code. ```const express = require('express');
-const app = express();
-const port = 3000; //whatever port you want.
-app.get('/', (req, res) => res.send('Hello World!'));
-app.listen(port, () => console.log('\x1b[36m%s\x1b[0m', `|    🔗 Listening to RTX : ${port}`));``` in your `index.js` file.
+For assistance, please join our __[Discord Server](https://discord.gg/QNaTeXDu2U)__.  
+You can also visit our HelpDesk by [Clicking Here](https://notreal003.github.io/support).  
 
-#### OUTDATED
+# Social  
 
-# Support
+__[YouTube](https://youtube.com/@NotNT77?si=GbB6BKnISj3tGjVz)__  
 
-if you need any help join our __[Discord Server](https://discord.gg/QNaTeXDu2U)__.
-Visit our HelpDesk by [Clicking Here](https://notreal003.github.io/support).
-
-
-# social
-
-__[YouTube](https://youtube.com/@NotNT77?si=GbB6BKnISj3tGjVz)__
-
-Thanks.
+Thank you.
