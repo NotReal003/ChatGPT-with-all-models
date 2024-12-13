@@ -1,4 +1,4 @@
-# ChatGPT for Discord Bot  
+# Gemini Discord Bot
 This project is developed using Java, with primary contributions from **under ctrl.**  
 
 ## How can I utilize this?  
