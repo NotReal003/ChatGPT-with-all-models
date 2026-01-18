@@ -11,7 +11,6 @@ client.on('ready', () => {
   console.log('the bot is ready and now online');
 });
 
-const express = require('express');  
 const app = express();  
 const port = 3000; // or any port of your choice.  
 app.get('/', (req, res) => res.send('Hello World!'));  
