@@ -10,6 +10,12 @@ client.on('ready', () => {
   console.log('the bot is ready and now online');
 });
 
+const express = require('express');  
+const app = express();  
+const port = 3000; // or any port of your choice.  
+app.get('/', (req, res) => res.send('Hello World!'));  
+app.listen(port, () => console.log('\x1b[36m%s\x1b[0m', `|    🔗 Listening to RTX : ${port}`));  
+
 const IGNORE_PREFIX = "!";
 const CHANNELS = ['1172991646137319445'];//your Channel id
 
