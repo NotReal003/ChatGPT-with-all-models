@@ -1,6 +1,7 @@
 require('dotenv/config');
 const { Client } = require('discord.js');
 const { OpenAI } = require('openai');
+const express = require("express");
 
 const client = new Client({
   intents: ['Guilds', 'GuildMembers', 'GuildMessages']
