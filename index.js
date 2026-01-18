@@ -12,21 +12,33 @@ client.on('ready', () => {
 });
 
 const app = express();  
-const port = 3000; // or any port of your choice.  
-app.get('/', (req, res) => res.send('Hello World!'));  
-app.listen(port, () => console.log('\x1b[36m%s\x1b[0m', `|    🔗 Listening to RTX : ${port}`));  
+const port = 5000;
+app.get('/', (req, res) => {
+  const tokenStatus = process.env.TOKEN ? 'configured' : 'missing';
+  const openaiStatus = process.env.OPENAI_API_KEY ? 'configured' : 'missing';
+  res.send(`Discord Bot Status: Running<br>Discord Token: ${tokenStatus}<br>OpenAI API Key: ${openaiStatus}`);
+});
+app.listen(port, '0.0.0.0', () => console.log('\x1b[36m%s\x1b[0m', `|    🔗 Listening on port: ${port}`));  
 
 const IGNORE_PREFIX = "!";
-const CHANNELS = ['1172991646137319445'];//your Channel id
+const CHANNELS = ['1172991646137319445'];
 
-  const openai = new OpenAI({
-  apikey: process.env.OPENAI_API_KEY,// your openai api key
-});
+let openai = null;
+if (process.env.OPENAI_API_KEY) {
+  openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+}
 
 client.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(IGNORE_PREFIX)) return;
   if (!CHANNELS.includes(message.channelId) && !message.mentions.users.has(client.user.id)) return;
+
+  if (!openai) {
+    message.reply("OpenAI is not configured. Please set the OPENAI_API_KEY environment variable.");
+    return;
+  }
 
   await message.channel.sendTyping();
 
@@ -41,9 +53,9 @@ client.on('messageCreate', async (message) => {
   });
 
   let prevMessages = await message.channel.messages.fetch({ limit: 10 });
-    prevMessages.reverse();
+  prevMessages.reverse();
 
-    prevMessages.forEach((msg) => {
+  prevMessages.forEach((msg) => {
     if (msg.author.bot && msg.author.id !== client.user.id) return;
     if (msg.content.startsWith(IGNORE_PREFIX)) return;
 
@@ -64,18 +76,18 @@ client.on('messageCreate', async (message) => {
       name: username,
       content: msg.content,
     });
+  });
+
+  const response = await openai.chat.completions.create({
+    model: 'gpt-3.5-turbo',
+    messages: conversation,
   })
+    .catch((error) => console.error('OpenAi Error:\n', error));
 
-const response = await openai.chat.completions.create({
-  model: 'gpt-3.5-turbo', // you can change to whatever you want! like gpt-4
-  messages: conversation,
-})
-  .catch((error) => console.error('OpenAi Error:\n', error));
-
- clearInterval(sendTypingInterval);
+  clearInterval(sendTypingInterval);
 
   if (!response) {
-    message.reply("Hello! correctly I'm unavailable means I'm under maintenance, will be back soon :)");
+    message.reply("Hello! I'm currently unavailable due to maintenance. Will be back soon :)");
     return;
   }
 
@@ -84,9 +96,12 @@ const response = await openai.chat.completions.create({
 
   for (let i = 0; i < responseMessage.length; i += chunkSizeLimit) {
     const chunk = responseMessage.substring(i, i + chunkSizeLimit);
-
     await message.reply(chunk);
   } 
 });
 
-client.login(process.env.TOKEN);// bot token
+if (process.env.TOKEN) {
+  client.login(process.env.TOKEN);
+} else {
+  console.log('Warning: Discord TOKEN is not set. Bot will not connect to Discord.');
+}
