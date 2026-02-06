@@ -108,8 +108,6 @@ client.on('messageCreate', async (message) => {
   }
 });
 
-if (process.env.TOKEN) {
-  client.login(process.env.TOKEN);
-} else {
-  console.log('No Token');
-}
+client.login(process.env.TOKEN).catch(err => {
+  console.error("Login failed:", err);
+});
